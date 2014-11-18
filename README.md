@@ -89,7 +89,7 @@ Next, add an "Invoke Ant" build step with the following target:
 build-qa
 ```
 
-This will run `check\_mergeconflicts`, `phplint`, `phpunit`, `phpcs-ci`,
+This will run `check_mergeconflicts`, `phplint`, `phpunit`, `phpcs-ci`,
 `pdepend`, `phpmd-ci`, `phpcpd-ci`, `phploc-ci`, and `phpdox`.
 
 Add additional build targets to your `build.xml` file as appropriate for your
