@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="phpqaconfig" default="build">
+<project name="phpqaconfig" default="build-qa">
 
     <!-- Path to QA executables downloaded by Composer -->
     <property name="toolsdir" value="${basedir}/vendor/bin/" />
@@ -7,9 +7,9 @@
     <!-- Path to common QA tool configuration files downloaded by Composer -->
     <property name="qaconfig" value="${basedir}/vendor/lovullo/phpqaconfig/" />
 
-    <target name="build"
-        depends="prepare,check_mergeconflicts,phplint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"
-        description=""/>
+    <target name="build-qa"
+        depends="prepare,check_mergeconflicts,phplint,phpunit,phpcs-ci,pdepend,phpmd-ci,phpcpd-ci,phploc-ci,phpdox"
+        description="Builds all PHP QA targets"/>
 
     <target name="clean"
         unless="clean.done"

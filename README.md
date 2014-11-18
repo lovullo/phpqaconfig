@@ -75,20 +75,22 @@ For example:
 $ ant phpcs phpmd phpcpd
 ```
 
-When doing Continuous Integration (ie. Jenkins), make sure the build process is
-configured to run the following steps in order:
+When configuring Continuous Integration (ie. Jenkins), `composer` must download
+and install this repo before you can run `ant` tasks. Add an "Execute Shell"
+build step to Jenkins with the following command:
+
+```sh
+$ composer install -o
+```
+
+Next, add an "Invoke Ant" build step with the following target:
 
 ```
-check_mergeconflicts
-phplint
-composer-ci
-phpunit
-phpcs-ci
-phpmd-ci
-phpcpd-ci
-phploc-ci
-phpdox
+build-qa
 ```
+
+This will run `check\_mergeconflicts`, `phplint`, `phpunit`, `phpcs-ci`,
+`pdepend`, `phpmd-ci`, `phpcpd-ci`, `phploc-ci`, and `phpdox`.
 
 Add additional build targets to your `build.xml` file as appropriate for your
 particular project.
