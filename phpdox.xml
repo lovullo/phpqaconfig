@@ -1,13 +1,14 @@
-<phpdox xmlns="http://phpdox.net/config">
-    <project name="policy-download" source="src" workdir="build/phpdox">
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://phpdox.net/config" silent="false">
+    <project name="generic-project" source="." workdir="build/api/xml">
         <collector publiconly="false">
             <include mask="*.php" />
+            <exclude mask="build" />
+            <exclude mask="vendor" />
         </collector>
 
-        <generator output="build">
-            <build engine="html" enabled="true" output="api">
-                <file extension="html" />
-            </build>
+        <generator output="build/api">
+            <build engine="html" enabled="true" />
         </generator>
     </project>
 </phpdox>
