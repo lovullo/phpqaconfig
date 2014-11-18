@@ -1,18 +1,9 @@
 phpqaconfig
 ==========
 
-Composer metapackage containing the following PHP QA and development tools:
-
-* phpunit
-* dbunit
-* phpcs
-* pdepend
-* phpmd
-* phpcpd
-* phploc
-* phpdox
-* php-cs-fixer
-* security-checker
+Configuration for QA and development tools specific to the coding standards at
+LoVullo Associates. This package, combined with `lovullo/phpqatools` is meant
+to be a base for new PHP projects.
 
 Installation
 ==========
