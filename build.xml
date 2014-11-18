@@ -125,6 +125,7 @@
             <arg value="--standard=${qaconfig}LoVullo/phpcs.xml" />
             <arg value="--extensions=php" />
             <arg value="--ignore=vendor/" />
+            <arg value="-n" />
             <arg path="." />
         </exec>
     </target>
@@ -138,6 +139,7 @@
             <arg value="--standard=${qaconfig}LoVullo/phpcs.xml" />
             <arg value="--extensions=php" />
             <arg value="--ignore=vendor/" />
+            <arg value="-n" />
             <arg path="." />
         </exec>
     </target>
