@@ -92,6 +92,15 @@ build-qa
 This will run `check_mergeconflicts`, `phplint`, `phpunit`, `phpcs-ci`,
 `pdepend`, `phpmd-ci`, `phpcpd-ci`, `phploc-ci`, and `phpdox`.
 
+For jobs that need to run quickly and only need a minimal number of QA checks,
+run the following targets instead:
+
+```
+build-quick
+```
+
+This will run `check_mergeconflicts`, `phplint`, and `phpunit`.
+
 Add additional build targets to your `build.xml` file as appropriate for your
 particular project.
 

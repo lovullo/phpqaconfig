@@ -7,6 +7,10 @@
     <!-- Path to common QA tool configuration files downloaded by Composer -->
     <property name="qaconfig" value="${basedir}/vendor/lovullo/phpqaconfig/" />
 
+    <target name="build-quick"
+        depends="prepare,check_mergeconflicts,phplint,phpunit"
+        description="Builds minimal PHP QA targets"/>
+
     <target name="build-qa"
         depends="prepare,check_mergeconflicts,phplint,phpunit,phpcs-ci,pdepend,phpmd-ci,phpcpd-ci,phploc-ci,phpdox"
         description="Builds all PHP QA targets"/>
