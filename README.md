@@ -25,24 +25,14 @@ $ composer require lovullo/phpqaconfig
 Usage
 ==========
 
+Project Setup
+----------
+
 Create a `build.xml` file in your project root with the following contents:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <project name="project-name">
-  <import file="${basedir}/vendor/lovullo/phpqaconfig/build.xml" />
-</project>
-```
-
-The included `build.xml` assumes that all the QA tools are installed into
-`./vendor/bin`. If they are installed elsewhere, provide a `toolsdir` property
-to their location:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<project name="project-name">
-  <property name="toolsdir" value="${basedir}/bin/" />
-
   <import file="${basedir}/vendor/lovullo/phpqaconfig/build.xml" />
 </project>
 ```
@@ -70,8 +60,13 @@ Create a `phpunit.xml` file in your project root with the following contents:
     <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>
   </logging>
 </phpunit>
-
 ```
+
+See the "Customizing" section below if you have an existing PHPUnit
+configuration elsewhere.
+
+Development
+----------
 
 When developing, use the following ant targets:
 
@@ -87,6 +82,9 @@ For example:
 ```sh
 $ ant phpcs phpmd phpcpd
 ```
+
+Continuous Integration
+-----------
 
 When configuring Continuous Integration (ie. Jenkins), `composer` must download
 and install this repo before you can run `ant` tasks. Add an "Execute Shell"
@@ -116,4 +114,39 @@ This will run `check_mergeconflicts`, `phplint`, and `phpunit`.
 
 Add additional build targets to your `build.xml` file as appropriate for your
 particular project.
+
+Customizing
+==========
+
+QA Tools Location
+----------
+
+The included `build.xml` assumes that all the QA tools are installed into
+`./vendor/bin`. If they are installed elsewhere, provide a `toolsdir` property
+to their location:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<project name="project-name">
+  <property name="toolsdir" value="${basedir}/bin/" />
+
+  <import file="${basedir}/vendor/lovullo/phpqaconfig/build.xml" />
+</project>
+```
+
+PHPUnit Configuration
+----------
+
+By default, the included `build.xml` assumes that there is a `phpunit.xml` file
+in the same directory as itself. If you already have a `phpunit.xml` file
+located somewhere else, you can override the configuration as follows:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<project name="project-name">
+  <property name="phpunitconfig" value="${basedir}/app/" />
+
+  <import file="${basedir}/vendor/lovullo/phpqaconfig/build.xml" />
+</project>
+```
 
