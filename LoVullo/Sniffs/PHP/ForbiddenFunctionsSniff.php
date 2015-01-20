@@ -23,7 +23,7 @@ class LoVullo_Sniffs_PHP_ForbiddenFunctionsSniff extends Generic_Sniffs_PHP_Forb
      *
      * @var array(string => string|null)
      */
-    protected $forbiddenFunctions = array(
+    public $forbiddenFunctions = array(
                                     'create_function'              => null,
                                     'debug_print_backtrace'        => null,
                                     'delete'                       => 'unset',
