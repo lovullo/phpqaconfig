@@ -10,6 +10,12 @@
     <!-- Directory containing the PHPUnit phpunit.xml Configuration File -->
     <property name="phpunitconfig" value="${basedir}" />
 
+    <!-- Comma-separated list of file/directory ignores to pass to PHP_CodeSniffer -->
+    <property name="phpcsignore" value="vendor/" />
+
+    <!-- Comma-separated list of directories to ignore for PHPMD checks -->
+    <property name="phpmdignore" value="vendor" />
+
     <target name="build-quick"
         depends="prepare,check_mergeconflicts,phplint,phpunit"
         description="Builds minimal PHP QA targets"/>
@@ -115,7 +121,7 @@
             <arg value="text" />
             <arg path="${qaconfig}phpmd.xml" />
             <arg value="--exclude" />
-            <arg value="vendor" />
+            <arg value="${phpmdignore}" />
         </exec>
     </target>
 
@@ -127,7 +133,7 @@
             <arg value="xml" />
             <arg path="${qaconfig}phpmd.xml" />
             <arg value="--exclude" />
-            <arg value="vendor" />
+            <arg value="${phpmdignore}" />
             <arg value="--reportfile" />
             <arg path="${basedir}/build/logs/pmd.xml" />
         </exec>
@@ -138,7 +144,7 @@
         <exec executable="${toolsdir}phpcs">
             <arg value="--standard=${qaconfig}LoVullo/phpcs.xml" />
             <arg value="--extensions=php" />
-            <arg value="--ignore=vendor/" />
+            <arg value="--ignore=${phpcsignore}" />
             <arg value="-n" />
             <arg path="." />
         </exec>
@@ -152,7 +158,7 @@
             <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
             <arg value="--standard=${qaconfig}LoVullo/phpcs.xml" />
             <arg value="--extensions=php" />
-            <arg value="--ignore=vendor/" />
+            <arg value="--ignore=${phpcsignore}" />
             <arg value="-n" />
             <arg path="." />
         </exec>
