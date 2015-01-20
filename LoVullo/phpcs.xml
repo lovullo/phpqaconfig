@@ -56,7 +56,6 @@
         <exclude name="Squiz.CSS.Indentation"/>
         <exclude name="Squiz.Classes.ClassDeclaration"/>
         <exclude name="Squiz.Classes.ValidClassName"/>
-        <exclude name="Squiz.CodeAnalysis.EmptyStatement"/>
         <exclude name="Squiz.Commenting.BlockComment"/>
         <exclude name="Squiz.Commenting.ClassComment"/>
         <exclude name="Squiz.Commenting.ClosingDeclarationComment"/>
