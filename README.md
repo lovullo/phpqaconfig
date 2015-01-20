@@ -34,6 +34,19 @@ Create a `build.xml` file in your project root with the following contents:
 </project>
 ```
 
+The included `build.xml` assumes that all the QA tools are installed into
+`./vendor/bin`. If they are installed elsewhere, provide a `toolsdir` property
+to their location:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<project name="project-name">
+  <property name="toolsdir" value="${basedir}/bin/" />
+
+  <import file="${basedir}/vendor/lovullo/phpqaconfig/build.xml" />
+</project>
+```
+
 Create a `phpunit.xml` file in your project root with the following contents:
 
 ```xml
