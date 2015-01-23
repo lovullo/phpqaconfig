@@ -16,6 +16,9 @@
     <!-- Comma-separated list of directories to ignore for PHPMD checks -->
     <property name="phpmdignore" value="vendor" />
 
+    <!-- Exclude argument string for PHPCPD -->
+    <property name="phpcpdignore" value="--exclude vendor" />
+
     <target name="build-quick"
         depends="prepare,check_mergeconflicts,phplint,phpunit"
         description="Builds minimal PHP QA targets"/>
@@ -167,8 +170,7 @@
     <target name="phpcpd"
         description="Find duplicate code using PHPCPD and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="${toolsdir}phpcpd">
-            <arg value="--exclude" />
-            <arg value="vendor" />
+            <arg line="${phpcpdignore}" />
             <arg path="." />
         </exec>
     </target>
@@ -179,8 +181,7 @@
         <exec executable="${toolsdir}phpcpd">
             <arg value="--log-pmd" />
             <arg path="${basedir}/build/logs/pmd-cpd.xml" />
-            <arg value="--exclude" />
-            <arg value="vendor" />
+            <arg line="${phpcpdignore}" />
             <arg path="." />
         </exec>
     </target>

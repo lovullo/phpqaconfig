@@ -150,3 +150,54 @@ located somewhere else, you can override the configuration as follows:
 </project>
 ```
 
+PHP_CodeSniffer Configuration
+----------
+
+You can customize the files that are ignored in `phpcs` checks by specifying
+a `phpcsignore` property:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<project name="project-name">
+  <property name="phpcsignore" value="app/,bin/,vendor/,web/" />
+
+  <import file="${basedir}/vendor/lovullo/phpqaconfig/build.xml" />
+</project>
+```
+
+By default, only the `vendor` directory is excluded from checks.
+
+PHPMD Configuration
+----------
+
+You can customize the files that are ignored in `phpmd` checks by specifying
+a `phpmdignore` property:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<project name="project-name">
+  <property name="phpmdignore" value="app,bin,vendor,web" />
+
+  <import file="${basedir}/vendor/lovullo/phpqaconfig/build.xml" />
+</project>
+```
+
+By default, only the `vendor` directory is excluded from checks.
+
+PHPCPD Configuration
+----------
+
+You can customize the files that are ignored in `phpcpd` checks by specifying
+a `phpcpdignore` property:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<project name="project-name">
+  <property name="phpcpdignore" value="--exclude vendor --exclude app" />
+
+  <import file="${basedir}/vendor/lovullo/phpqaconfig/build.xml" />
+</project>
+```
+
+By default, only the `vendor` directory is excluded from checks.
+
