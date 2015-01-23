@@ -160,7 +160,8 @@ class LoVullo_Sniffs_Whitespace_FunctionSpacingSniff implements PHP_CodeSniffer_
             }//end while
         }//end if
 
-        if ($foundLines !== 2) {
+        // Does not apply to global functions
+        if ($foundLines !== 2 && $level > 0) {
             // Don't throw the error if the previous token was a opening curly brace; This brace should
             // be the opening brace of a class and two padding spaces is unneeded
             if ($tokens[$prevContent]['content'] !== '{') {

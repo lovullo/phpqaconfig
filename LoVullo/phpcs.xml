@@ -4,6 +4,7 @@
 
     <rule ref="Generic">
         <exclude name="Generic.CodeAnalysis.EmptyStatement.NotAllowed"/>
+        <exclude name="Generic.Commenting.DocComment.ShortNotCapital"/>
         <exclude name="Generic.Commenting.Fixme.TaskFound"/>
         <exclude name="Generic.Commenting.Todo"/>
         <exclude name="Generic.ControlStructures.InlineControlStructure"/>
