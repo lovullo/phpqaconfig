@@ -153,6 +153,17 @@
         </exec>
     </target>
 
+    <target name="phpcbf"
+        description="Find coding standard violations using PHP_CodeSniffer and correct them with PHPCBF. Intended for usage on the command line before committing.">
+        <exec executable="${toolsdir}phpcbf">
+            <arg value="--standard=${qaconfig}LoVullo/phpcs.xml" />
+            <arg value="--extensions=php" />
+            <arg value="--ignore=${phpcsignore}" />
+            <arg value="-n" />
+            <arg path="." />
+        </exec>
+    </target>
+
     <target name="phpcs-ci"
         depends="prepare"
         description="Find coding standard violations using PHP_CodeSniffer and log result in XML format. Intended for usage within a continuous integration environment.">
