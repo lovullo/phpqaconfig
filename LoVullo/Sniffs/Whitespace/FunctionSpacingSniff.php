@@ -59,6 +59,9 @@ class LoVullo_Sniffs_Whitespace_FunctionSpacingSniff implements PHP_CodeSniffer_
             after the function.
         */
 
+        // Scope level; Scope level 0 is a global function
+        $level = $tokens[$stackPtr]["level"];
+
         if (isset($tokens[$stackPtr]['scope_closer']) === false) {
             // Must be an interface method, so the closer is the semi-colon.
             $closer = $phpcsFile->findNext(T_SEMICOLON, $stackPtr);
@@ -94,8 +97,6 @@ class LoVullo_Sniffs_Whitespace_FunctionSpacingSniff implements PHP_CodeSniffer_
         // don't require spacing if the previous token is a closing brace,
         // which will be the opening class brace
         if (isset($tokens[$nextLineToken]['content']) && $tokens[$nextLineToken]['content'] !== '}') {
-            // Scope level; Scope level 0 is a global function
-            $level = $tokens[$stackPtr]["level"];
 
             // "2 lines after function" rule doesn't apply to global functions
             if ($foundLines !== 2 && $level > 0) {
