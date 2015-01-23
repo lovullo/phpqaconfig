@@ -22,6 +22,7 @@
         <exclude name="Generic.PHP.UpperCaseConstant"/>
         <exclude name="Generic.Strings.UnnecessaryStringConcat"/>
         <exclude name="Generic.VersionControl.SubversionProperties"/>
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.TabsUsed"/>
         <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
     </rule>
