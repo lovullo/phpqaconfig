@@ -124,7 +124,8 @@ class LoVullo_Sniffs_Whitespace_FunctionSpacingSniff implements PHP_CodeSniffer_
             // there are 0 blank lines before the function.
             $foundLines = 0;
         } else {
-            $prevContent = $phpcsFile->findPrevious(array(T_WHITESPACE, T_DOC_COMMENT), $prevLineToken, null, true);
+            $searchTokens = array_merge( PHP_CodeSniffer_Tokens::$commentTokens, array( T_WHITESPACE ) );
+            $prevContent  = $phpcsFile->findPrevious( $searchTokens, $prevLineToken, null, true);
 
             // Before we throw an error, check that we are not throwing an error
             // for another function. We don't want to error for no blank lines after
