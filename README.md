@@ -201,3 +201,21 @@ a `phpcpdignore` property:
 
 By default, only the `vendor` directory is excluded from checks.
 
+Disabling QA Checks
+----------
+
+If you do not want certain QA tools to run for a project, add one or more of
+the following `disable` properties prior to including the base `build.xml` file:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<project name="project-name">
+  <property name="disable-phpunit" value="true" />
+  <property name="disable-pdepend" value="true" />
+  <property name="disable-phpmd" value="true" />
+  <property name="disable-phpcs" value="true" />
+  <property name="disable-phpcpd" value="true" />
+
+  <import file="${basedir}/vendor/lovullo/phpqaconfig/build.xml" />
+</project>
+```

@@ -98,6 +98,7 @@
 
     <target name="phpunit"
         depends="prepare"
+        unless="disable-phpunit"
         description="Run unit tests with PHPUnit">
         <exec executable="${toolsdir}phpunit" failonerror="true">
             <arg value="-c" />
@@ -107,6 +108,7 @@
 
     <target name="pdepend"
         depends="prepare"
+        unless="disable-pdepend"
         description="Calculate software metrics using PHP_Depend and log result in XML format. Intended for usage within a continuous integration environment.">
         <exec executable="${toolsdir}pdepend">
             <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
@@ -118,6 +120,7 @@
     </target>
 
     <target name="phpmd"
+        unless="disable-phpmd"
         description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="${toolsdir}phpmd">
             <arg path="." />
@@ -130,6 +133,7 @@
 
     <target name="phpmd-ci"
         depends="prepare"
+        unless="disable-phpmd"
         description="Perform project mess detection using PHPMD and log result in XML format. Intended for usage within a continuous integration environment.">
         <exec executable="${toolsdir}phpmd">
             <arg path="." />
@@ -143,6 +147,7 @@
     </target>
 
     <target name="phpcs"
+        unless="disable-phpcs"
         description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="${toolsdir}phpcs">
             <arg value="--standard=${qaconfig}LoVullo/phpcs.xml" />
@@ -166,6 +171,7 @@
 
     <target name="phpcs-ci"
         depends="prepare"
+        unless="disable-phpcs"
         description="Find coding standard violations using PHP_CodeSniffer and log result in XML format. Intended for usage within a continuous integration environment.">
         <exec executable="${toolsdir}phpcs" output="/dev/null">
             <arg value="--report=checkstyle" />
@@ -179,6 +185,7 @@
     </target>
 
     <target name="phpcpd"
+        unless="disable-phpcpd"
         description="Find duplicate code using PHPCPD and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="${toolsdir}phpcpd">
             <arg line="${phpcpdignore}" />
@@ -188,6 +195,7 @@
 
     <target name="phpcpd-ci"
         depends="prepare"
+        unless="disable-phpcpd"
         description="Find duplicate code using PHPCPD and log result in XML format. Intended for usage within a continuous integration environment.">
         <exec executable="${toolsdir}phpcpd">
             <arg value="--log-pmd" />
