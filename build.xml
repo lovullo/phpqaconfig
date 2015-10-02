@@ -56,15 +56,18 @@
             <arg value="-Er" />
             <arg value="--exclude-dir=./vendor" />
             <arg value="--exclude-dir=./node_modules" />
+            <arg value="--exclude-dir=./.git" />
             <arg value="^(&lt;&lt;&lt;&lt;&lt;&lt;&lt;|=======$|&gt;&gt;&gt;&gt;&gt;&gt;&gt;)" />
             <arg value="." />
         </exec>
 
-        <condition property="grep.foundconflicts">
-            <equals arg1="${grep.returncode}" arg2="0" />
-        </condition>
-
-        <fail message="Merge conflict markers detected in committed code!" if="grep.foundconflicts"/>
+        <fail message="Merge conflict markers detected in committed code! ${grep.returncode}">
+            <condition>
+                <not>
+                    <equals arg1="${grep.returncode}" arg2="1" />
+                </not>
+            </condition>
+        </fail>
     </target>
 
     <target name="composer" description="Install composer dependencies.">
