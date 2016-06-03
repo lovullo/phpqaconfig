@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<phpdox xmlns="http://phpdox.net/config" silent="false">
+<phpdox xmlns="http://xml.phpdox.net/config" silent="false">
     <project name="generic-project" source="." workdir="build/api/xml">
         <collector publiconly="false">
             <include mask="*.php" />
