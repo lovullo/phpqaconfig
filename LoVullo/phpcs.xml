@@ -3,8 +3,11 @@
     <description>Coding Standard Rules for LoVullo Associates, Inc.</description>
 
     <rule ref="Generic">
+        <exclude name="Generic.Arrays.DisallowLongArraySyntax.Found"/>
         <exclude name="Generic.CodeAnalysis.EmptyStatement.NotAllowed"/>
         <exclude name="Generic.Commenting.DocComment.ShortNotCapital"/>
+        <exclude name="Generic.Commenting.DocComment.SpacingBeforeTags"/>
+        <exclude name="Generic.Commenting.DocComment.TagValueIndent"/>
         <exclude name="Generic.Commenting.Fixme.TaskFound"/>
         <exclude name="Generic.Commenting.Todo"/>
         <exclude name="Generic.ControlStructures.InlineControlStructure"/>
@@ -94,6 +97,7 @@
         <exclude name="Squiz.WhiteSpace.FunctionSpacing"/>
         <exclude name="Squiz.WhiteSpace.MemberVarSpacing"/>
         <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing"/>
+        <exclude name="Squiz.WhiteSpace.OperatorSpacing.SpacingAfter"/>
         <exclude name="Squiz.WhiteSpace.OperatorSpacing.SpacingBefore"/>
         <exclude name="Squiz.WhiteSpace.ScopeClosingBrace"/>
     </rule>
