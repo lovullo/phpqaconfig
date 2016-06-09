@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phpdox xmlns="http://xml.phpdox.net/config" silent="false">
-    <project name="generic-project" source="." workdir="build/api/xml">
+    <project name="generic-project" source="." workdir="${basedir}/../../../build/api/xml">
         <collector publiconly="false">
             <include mask="*.php" />
             <exclude mask="build" />
             <exclude mask="vendor" />
         </collector>
 
-        <generator output="build/api">
+        <generator output="${basedir}/../../../build/api">
             <enrich base="logs">
                 <source type="build" />
 
