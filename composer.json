@@ -4,6 +4,6 @@
     "license": "GPL-3.0+",
     "keywords": [ "php", "qa", "tools", "configuration" ],
     "require": {
-        "lovullo/phpqatools": "@stable"
+        "lovullo/phpqatools": "1.0.4"
     }
 }
