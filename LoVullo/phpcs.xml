@@ -4,6 +4,7 @@
 
     <rule ref="Generic">
         <exclude name="Generic.Arrays.DisallowLongArraySyntax.Found"/>
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
         <exclude name="Generic.CodeAnalysis.EmptyStatement.NotAllowed"/>
         <exclude name="Generic.Commenting.DocComment.NonParamGroup"/>
         <exclude name="Generic.Commenting.DocComment.ShortNotCapital"/>
@@ -18,6 +19,7 @@
         <exclude name="Generic.Files.LowercasedFilename.NotFound"/>
         <exclude name="Generic.Formatting.MultipleStatementAlignment"/>
         <exclude name="Generic.Formatting.SpaceAfterCast"/>
+        <exclude name="Generic.Formatting.SpaceAfterNot.Incorrect"/>
         <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
         <exclude name="Generic.Metrics.CyclomaticComplexity"/>
         <exclude name="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps"/>
