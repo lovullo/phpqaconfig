@@ -82,6 +82,7 @@
         <exclude name="Squiz.Formatting.OperatorBracket.MissingBrackets"/>
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing"/>
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration"/>
+        <exclude name="Squiz.NamingConventions.ConstantCase.Found"/>
         <exclude name="Squiz.NamingConventions.ValidVariableName"/>
         <exclude name="Squiz.Objects.ObjectInstantiation"/>
         <exclude name="Squiz.Operators.ComparisonOperatorUsage"/>
