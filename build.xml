@@ -103,6 +103,7 @@
     <target name="phpunit"
         depends="prepare"
         unless="disable-phpunit"
+        failonerror="true"
         description="Run unit tests with PHPUnit">
         <exec executable="${toolsdir}phpunit" failonerror="true">
             <arg value="-c" />
@@ -125,6 +126,7 @@
 
     <target name="phpmd"
         unless="disable-phpmd"
+        failonerror="true"
         description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="${toolsdir}phpmd">
             <arg path="." />
@@ -152,6 +154,7 @@
 
     <target name="phpcs"
         unless="disable-phpcs"
+        failonerror="true"
         description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="${toolsdir}phpcs">
             <arg value="--standard=${qaconfig}LoVullo/phpcs.xml" />
@@ -190,6 +193,7 @@
 
     <target name="phpcpd"
         unless="disable-phpcpd"
+        failonerror="true"
         description="Find duplicate code using PHPCPD and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="${toolsdir}phpcpd">
             <arg line="${phpcpdignore}" />
