@@ -41,11 +41,7 @@ Create a `phpunit.xml` file in your project root with the following contents:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="tests/bootstrap.php"
-         backupGlobals="false"
-         backupStaticAttributes="false"
-         strict="true"
-         verbose="true">
+<phpunit strict="true" verbose="true">
 
   <testsuites>
     <testsuite name="ProjectName">
