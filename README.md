@@ -41,8 +41,7 @@ Create a `phpunit.xml` file in your project root with the following contents:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit strict="true" verbose="true">
-
+<phpunit verbose="true">
   <testsuites>
     <testsuite name="ProjectName">
       <directory suffix="Test.php">tests/</directory>
