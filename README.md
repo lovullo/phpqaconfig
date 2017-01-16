@@ -167,6 +167,18 @@ a `phpcsignore` property:
 
 By default, only the `vendor` directory is excluded from checks.
 
+You can change what PHP_CodeSniffer standard uses by overriding the
+`phpcsstandard` property:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<project name="project-name">
+  <property name="phpcsstandard" value="PSR1,PSR2" />
+
+  <import file="${basedir}/vendor/lovullo/phpqaconfig/build.xml" />
+</project>
+```
+
 PHPMD Configuration
 ----------
 
