@@ -129,6 +129,22 @@ to their location:
 </project>
 ```
 
+PHP Lint Configuration
+---------
+
+By default, the included `build.xml` runs `php -l` on all PHP files in the project
+except for the `vendor/` directory in the root of your project. You can override
+this setting using the `phplintignore` property:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<project name="project-name">
+  <property name="phplintignore" value="components/**/*,vendor/**/*" />
+
+  <import file="${basedir}/vendor/lovullo/phpqaconfig/build.xml" />
+</project>
+```
+
 PHPUnit Configuration
 ----------
 
