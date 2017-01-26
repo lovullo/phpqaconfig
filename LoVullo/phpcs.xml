@@ -7,7 +7,10 @@
         <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
         <exclude name="Generic.Classes.OpeningBraceSameLine.BraceOnNewLine"/>
         <exclude name="Generic.CodeAnalysis.EmptyStatement.NotAllowed"/>
+        <exclude name="Generic.Commenting.DocComment.MissingShort"/>
         <exclude name="Generic.Commenting.DocComment.NonParamGroup"/>
+        <exclude name="Generic.Commenting.DocComment.ParamGroup"/>
+        <exclude name="Generic.Commenting.DocComment.ParamNotFirst"/>
         <exclude name="Generic.Commenting.DocComment.ShortNotCapital"/>
         <exclude name="Generic.Commenting.DocComment.SpacingBeforeTags"/>
         <exclude name="Generic.Commenting.DocComment.TagValueIndent"/>
