@@ -164,6 +164,7 @@
             <arg value="--extensions=php" />
             <arg value="--ignore=${phpcsignore}" />
             <arg value="-n" />
+            <arg value="-s" />
             <arg path="." />
         </exec>
     </target>
