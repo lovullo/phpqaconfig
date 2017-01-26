@@ -23,4 +23,15 @@
         </properties>
     </rule>
 
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="minimum" value="2" />
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/naming.xml/LongVariable">
+        <properties>
+            <property name="maximum" value="25" />
+        </properties>
+    </rule>
 </ruleset>
