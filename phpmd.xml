@@ -6,14 +6,15 @@
 
     <rule ref="rulesets/codesize.xml" />
     <rule ref="rulesets/design.xml" />
-    <rule ref="rulesets/naming.xml" />
     <rule ref="rulesets/unusedcode.xml" />
 
+    <!-- Clean Code Rules -->
     <rule ref="rulesets/cleancode.xml">
         <exclude name="ElseExpression" />
         <exclude name="StaticAccess" />
     </rule>
 
+    <!-- Controversial Rules -->
     <rule ref="rulesets/controversial.xml/Superglobals" />
     <rule ref="rulesets/controversial.xml/CamelCaseClassName" />
 
@@ -23,9 +24,15 @@
         </properties>
     </rule>
 
+    <!-- Naming Rules -->
+    <rule ref="rulesets/naming.xml/ShortMethodName" />
+    <rule ref="rulesets/naming.xml/ConstructorWithNameAsEnclosingClass" />
+    <rule ref="rulesets/naming.xml/ConstantNamingConventions" />
+    <rule ref="rulesets/naming.xml/BooleanGetMethodName" />
+
     <rule ref="rulesets/naming.xml/ShortVariable">
         <properties>
-            <property name="minimum" value="2" />
+            <property name="exceptions" value="db" />
         </properties>
     </rule>
 
