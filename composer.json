@@ -5,13 +5,10 @@
     "keywords": [ "php", "qa", "tools", "configuration" ],
     "require": {
         "friendsofphp/php-cs-fixer":   "@stable",
-        "pdepend/pdepend":             "@stable",
-        "phploc/phploc":               "@stable",
         "phpmd/phpmd":                 "@stable",
         "phpunit/dbunit":              "@stable",
         "phpunit/phpunit":             "@stable",
         "sebastian/phpcpd":            "@stable",
-        "squizlabs/php_codesniffer":   "@stable",
-        "theseer/phpdox":              "@stable"
+        "squizlabs/php_codesniffer":   "@stable"
     }
 }
