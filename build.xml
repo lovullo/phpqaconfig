@@ -111,9 +111,9 @@
         unless="disable-phpunit"
         description="Run unit tests with PHPUnit">
         <exec executable="${toolsdir}phpunit" failonerror="true">
-            <arg value="-c" />
             <arg value="--exclude-group" />
             <arg value="ciexclude,selenium" />
+            <arg value="-c" />
             <arg value="${phpunitconfig}" />
         </exec>
     </target>
