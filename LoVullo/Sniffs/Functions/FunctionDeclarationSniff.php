@@ -1,32 +1,12 @@
 <?php
-/**
- * PEAR_Sniffs_Functions_FunctionDeclarationSniff.
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   CVS: $Id: FunctionDeclarationSniff.php 293522 2010-01-13 22:28:20Z squiz $
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
 
-/**
- * PEAR_Sniffs_Functions_FunctionDeclarationSniff.
- *
- * Ensure single and multi-line function declarations are defined correctly.
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   Release: 1.2.2
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
-class LoVullo_Sniffs_Functions_FunctionDeclarationSniff implements PHP_CodeSniffer_Sniff
+namespace PHP_CodeSniffer\Sniffs;
+
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Exceptions\RuntimeException;
+use PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\OpeningFunctionBraceBsdAllmanSniff;
+
+class LoVullo_Sniffs_Functions_FunctionDeclarationSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -42,13 +22,13 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationSniff implements PHP_CodeSniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param File $phpcsFile The file being scanned.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -68,21 +48,17 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationSniff implements PHP_CodeSniff
      *
      * Just uses the Generic BSD-Allman brace sniff.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
-     * @param array                $tokens    The stack of tokens that make up
-     *                                        the file.
+     * @param File  $phpcsFile The file being scanned.
+     * @param int   $stackPtr  The position of the current token
+     *                         in the stack passed in $tokens.
+     * @param array $tokens    The stack of tokens that make up
+     *                         the file.
      *
      * @return void
      */
-    public function processSingleLineDeclaration(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
+    public function processSingleLineDeclaration(File $phpcsFile, $stackPtr, $tokens)
     {
-        if (class_exists('Generic_Sniffs_Functions_OpeningFunctionBraceBsdAllmanSniff', true) === false) {
-            throw new PHP_CodeSniffer_Exception('Class Generic_Sniffs_Functions_OpeningFunctionBraceBsdAllmanSniff not found');
-        }
-
-        $sniff = new Generic_Sniffs_Functions_OpeningFunctionBraceBsdAllmanSniff();
+        $sniff = new OpeningFunctionBraceBsdAllmanSniff();
         $sniff->process($phpcsFile, $stackPtr);
     }//end processSingleLineDeclaration()
 
@@ -90,15 +66,15 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationSniff implements PHP_CodeSniff
     /**
      * Processes mutli-line declarations.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
-     * @param array                $tokens    The stack of tokens that make up
-     *                                        the file.
+     * @param File  $phpcsFile The file being scanned.
+     * @param int   $stackPtr  The position of the current token
+     *                         in the stack passed in $tokens.
+     * @param array $tokens    The stack of tokens that make up
+     *                         the file.
      *
      * @return void
      */
-    public function processMultiLineDeclaration(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $tokens)
+    public function processMultiLineDeclaration(File $phpcsFile, $stackPtr, $tokens)
     {
         // We need to work out how far indented the function
         // declaration itself is, so we can work out how far to

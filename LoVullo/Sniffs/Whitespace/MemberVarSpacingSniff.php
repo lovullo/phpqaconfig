@@ -1,53 +1,27 @@
 <?php
-/**
- * Verifies that class members are spaced correctly.
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   CVS: $Id: MemberVarSpacingSniff.php 240383 2007-07-27 05:38:59Z squiz $
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
+namespace PHP_CodeSniffer\Sniffs;
 
-if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === false) {
-    throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_Standards_AbstractVariableSniff not found');
-}
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 
-/**
- * Verifies that class members are spaced correctly.
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   Release: 1.2.2
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
-class LoVullo_Sniffs_Whitespace_MemberVarSpacingSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
+class LoVullo_Sniffs_Whitespace_MemberVarSpacingSniff extends AbstractVariableSniff
 {
     /**
      * Processes the function tokens within the class.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where this token was found.
-     * @param int                  $stackPtr  The position where the token was found.
+     * @param File $phpcsFile The file where this token was found.
+     * @param int  $stackPtr  The position where the token was found.
      *
      * @return void
      */
-    protected function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processMemberVar(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
         // There needs to be 1 blank line before the var, not counting comments.
         $prevLineToken = null;
         for ($i = ($stackPtr - 1); $i > 0; $i--) {
-            if (in_array($tokens[$i]['code'], PHP_CodeSniffer_Tokens::$commentTokens) === true) {
+            if (in_array($tokens[$i]['code'], Tokens::$commentTokens) === true) {
                 // Skip comments.
                 continue;
             } elseif (strpos($tokens[$i]['content'], $phpcsFile->eolChar) === false) {
@@ -57,7 +31,7 @@ class LoVullo_Sniffs_Whitespace_MemberVarSpacingSniff extends PHP_CodeSniffer_St
                 // If this is a WHITESPACE token, and the token right before
                 // it is a DOC_COMMENT, then it is just the newline after the
                 // member var's comment, and can be skipped.
-                if ($tokens[$i]['code'] === T_WHITESPACE && in_array($tokens[($i - 1)]['code'], PHP_CodeSniffer_Tokens::$commentTokens) === true) {
+                if ($tokens[$i]['code'] === T_WHITESPACE && in_array($tokens[($i - 1)]['code'], Tokens::$commentTokens) === true) {
                     continue;
                 }
 
@@ -92,12 +66,12 @@ class LoVullo_Sniffs_Whitespace_MemberVarSpacingSniff extends PHP_CodeSniffer_St
     /**
      * Processes normal variables.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where this token was found.
-     * @param int                  $stackPtr  The position where the token was found.
+     * @param File $phpcsFile The file where this token was found.
+     * @param int  $stackPtr  The position where the token was found.
      *
      * @return void
      */
-    protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processVariable(File $phpcsFile, $stackPtr)
     {
         // We don't care about normal variables.
         return;
@@ -107,12 +81,12 @@ class LoVullo_Sniffs_Whitespace_MemberVarSpacingSniff extends PHP_CodeSniffer_St
     /**
      * Processes variables in double quoted strings.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where this token was found.
-     * @param int                  $stackPtr  The position where the token was found.
+     * @param File $phpcsFile The file where this token was found.
+     * @param int  $stackPtr  The position where the token was found.
      *
      * @return void
      */
-    protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    protected function processVariableInString(File $phpcsFile, $stackPtr)
     {
         // We don't care about normal variables.
         return;

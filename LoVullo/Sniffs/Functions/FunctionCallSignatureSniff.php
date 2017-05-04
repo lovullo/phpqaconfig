@@ -1,31 +1,11 @@
 <?php
-/**
- * PEAR_Sniffs_Functions_FunctionCallSignatureSniff.
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
 
-/**
- * PEAR_Sniffs_Functions_FunctionCallSignatureSniff.
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   Release: 1.3.3
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
-class LoVullo_Sniffs_Functions_FunctionCallSignatureSniff implements PHP_CodeSniffer_Sniff
+namespace PHP_CodeSniffer\Sniffs;
+
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class LoVullo_Sniffs_Functions_FunctionCallSignatureSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -41,18 +21,18 @@ class LoVullo_Sniffs_Functions_FunctionCallSignatureSniff implements PHP_CodeSni
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param File $phpcsFile The file being scanned.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
         // Find the next non-empty token.
-        $openBracket = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+        $openBracket = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
         if ($tokens[$openBracket]['code'] !== T_OPEN_PARENTHESIS) {
             // Not a function call.
@@ -65,7 +45,7 @@ class LoVullo_Sniffs_Functions_FunctionCallSignatureSniff implements PHP_CodeSni
         }
 
         // Find the previous non-empty token.
-        $search   = PHP_CodeSniffer_Tokens::$emptyTokens;
+        $search   = Tokens::$emptyTokens;
         $search[] = T_BITWISE_AND;
         $previous = $phpcsFile->findPrevious($search, ($stackPtr - 1), null, true);
         if ($tokens[$previous]['code'] === T_FUNCTION) {
@@ -88,7 +68,7 @@ class LoVullo_Sniffs_Functions_FunctionCallSignatureSniff implements PHP_CodeSni
 
         $next = $phpcsFile->findNext(T_WHITESPACE, ($closeBracket + 1), null, true);
         if ($tokens[$next]['code'] === T_SEMICOLON) {
-            if (in_array($tokens[($closeBracket + 1)]['code'], PHP_CodeSniffer_Tokens::$emptyTokens) === true) {
+            if (in_array($tokens[($closeBracket + 1)]['code'], Tokens::$emptyTokens) === true) {
                 $error = 'Space after closing parenthesis of function call prohibited';
                 $phpcsFile->addError($error, $closeBracket, 'SpaceAfterCloseBracket');
             }
@@ -106,17 +86,17 @@ class LoVullo_Sniffs_Functions_FunctionCallSignatureSniff implements PHP_CodeSni
     /**
      * Processes single-line calls.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile   The file being scanned.
-     * @param int                  $stackPtr    The position of the current token
-     *                                          in the stack passed in $tokens.
-     * @param int                  $openBracket The position of the openning bracket
-     *                                          in the stack passed in $tokens.
-     * @param array                $tokens      The stack of tokens that make up
-     *                                          the file.
+     * @param File  $phpcsFile   The file being scanned.
+     * @param int   $stackPtr    The position of the current token
+     *                           in the stack passed in $tokens.
+     * @param int   $openBracket The position of the openning bracket
+     *                           in the stack passed in $tokens.
+     * @param array $tokens      The stack of tokens that make up
+     *                           the file.
      *
      * @return void
      */
-    public function processSingleLineCall(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $openBracket, $tokens)
+    public function processSingleLineCall(File $phpcsFile, $stackPtr, $openBracket, $tokens)
     {
         // Find Closing Bracket
         $closeBracket = $tokens[$openBracket]['parenthesis_closer'];
@@ -142,17 +122,17 @@ class LoVullo_Sniffs_Functions_FunctionCallSignatureSniff implements PHP_CodeSni
     /**
      * Processes multi-line calls.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile   The file being scanned.
-     * @param int                  $stackPtr    The position of the current token
-     *                                          in the stack passed in $tokens.
-     * @param int                  $openBracket The position of the openning bracket
-     *                                          in the stack passed in $tokens.
-     * @param array                $tokens      The stack of tokens that make up
-     *                                          the file.
+     * @param File  $phpcsFile   The file being scanned.
+     * @param int   $stackPtr    The position of the current token
+     *                           in the stack passed in $tokens.
+     * @param int   $openBracket The position of the openning bracket
+     *                           in the stack passed in $tokens.
+     * @param array $tokens      The stack of tokens that make up
+     *                           the file.
      *
      * @return void
      */
-    public function processMultiLineCall(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $openBracket, $tokens)
+    public function processMultiLineCall(File $phpcsFile, $stackPtr, $openBracket, $tokens)
     {
         // We need to work out how far indented the function
         // call itself is, so we can work out how far to
@@ -190,12 +170,12 @@ class LoVullo_Sniffs_Functions_FunctionCallSignatureSniff implements PHP_CodeSni
                 $lastLine = $tokens[$i]['line'];
 
                 // Ignore heredoc indentation.
-                if (in_array($tokens[$i]['code'], PHP_CodeSniffer_Tokens::$heredocTokens) === true) {
+                if (in_array($tokens[$i]['code'], Tokens::$heredocTokens) === true) {
                     continue;
                 }
 
                 // Ignore multi-line string indentation.
-                if (in_array($tokens[$i]['code'], PHP_CodeSniffer_Tokens::$stringTokens) === true) {
+                if (in_array($tokens[$i]['code'], Tokens::$stringTokens) === true) {
                     if ($tokens[$i]['code'] === $tokens[($i - 1)]['code']) {
                         continue;
                     }

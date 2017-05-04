@@ -1,34 +1,15 @@
 <?php
-/**
- * Generic_Sniffs_ControlStructures_InlineControlStructureSniff.
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   CVS: $Id: InlineControlStructureSniff.php 258843 2008-05-01 00:49:32Z squiz $
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
+
+namespace PHP_CodeSniffer\Sniffs;
+
+use PHP_CodeSniffer\Files\File;
 
 /**
  * Generic_Sniffs_ControlStructures_InlineControlStructureSniff.
  *
  * Verifies that inline control statements are not present.
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   Release: 1.2.2
- * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class LoVullo_Sniffs_ControlStructures_InlineControlStructureSniff implements PHP_CodeSniffer_Sniff
+class LoVullo_Sniffs_ControlStructures_InlineControlStructureSniff implements Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -68,13 +49,13 @@ class LoVullo_Sniffs_ControlStructures_InlineControlStructureSniff implements PH
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param File $phpcsFile The file being scanned.
+     * @param int  $stackPtr  The position of the current token in the
+     *                        stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 

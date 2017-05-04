@@ -1,6 +1,11 @@
 <?php
 
-class LoVullo_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
+namespace PHP_CodeSniffer\Sniffs;
+
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class LoVullo_Sniffs_Commenting_BlockCommentSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -18,13 +23,13 @@ class LoVullo_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sni
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The current file being scanned.
-     * @param int                  $stackPtr  The position of the current token in the
-     *                                        stack passed in $tokens.
+     * @param File $phpcsFile The current file being scanned.
+     * @param int  $stackPtr  The position of the current token in the
+     *                        stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -36,7 +41,7 @@ class LoVullo_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sni
         // If this is a function/class/interface doc block comment, skip it.
         // We are only interested in inline doc block comments.
         if ($tokens[$stackPtr]['code'] === T_DOC_COMMENT) {
-            $nextToken = $phpcsFile->findNext(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr + 1), null, true);
+            $nextToken = $phpcsFile->findNext(Tokens::$emptyTokens, ($stackPtr + 1), null, true);
 
             $ignore    = array(
                           T_CLASS,
@@ -54,7 +59,7 @@ class LoVullo_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sni
                 return;
             }
 
-            $prevToken = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+            $prevToken = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
             if ($tokens[$prevToken]['code'] === T_OPEN_TAG) {
                 return;
             }

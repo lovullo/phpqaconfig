@@ -1,13 +1,17 @@
 <?php
+namespace PHP_CodeSniffer\Sniffs;
 
-class LoVullo_Sniffs_Whitespace_ObjectOperatorSpacingSniff implements PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class LoVullo_Sniffs_Whitespace_ObjectOperatorSpacingSniff implements Sniff
 {
     public function register()
     {
         return array(T_OBJECT_OPERATOR);
     }
 
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -20,14 +24,14 @@ class LoVullo_Sniffs_Whitespace_ObjectOperatorSpacingSniff implements PHP_CodeSn
             $prevType = $tokens[($stackPtr - 1)]['code'];
 
             // If preceding operator is whitespace, throw error
-            if (in_array($prevType, PHP_CodeSniffer_Tokens::$emptyTokens) === true) {
+            if (in_array($prevType, Tokens::$emptyTokens) === true) {
                 $error = 'Space found before object operator';
                 $phpcsFile->addError($error, $stackPtr, 'Before');
             }
         }
 
         $nextType = $tokens[($stackPtr + 1)]['code'];
-        if (in_array($nextType, PHP_CodeSniffer_Tokens::$emptyTokens) === true) {
+        if (in_array($nextType, Tokens::$emptyTokens) === true) {
             $error = 'Space found after object operator';
             $phpcsFile->addError($error, $stackPtr, 'After');
         }

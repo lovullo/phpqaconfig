@@ -1,24 +1,9 @@
 <?php
-/**
- * This sniff prohibits more than one blank line between anything
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Ralph Wissing <wissingr@lovullo.com>
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
+namespace PHP_CodeSniffer\Sniffs;
 
-/**
- * This sniff prohibits more than one blank line between anything
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Ralph Wissing <wissingr@lovullo.com>
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
-class LoVullo_Sniffs_Whitespace_DisallowMultipleBlankLinesSniff implements PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Files\File;
+
+class LoVullo_Sniffs_Whitespace_DisallowMultipleBlankLinesSniff implements Sniff
 {
     /**
      * Returns the token types that this sniff is interested in.
@@ -33,12 +18,12 @@ class LoVullo_Sniffs_Whitespace_DisallowMultipleBlankLinesSniff implements PHP_C
     /**
      * Processes the tokens that this sniff is interested in.
      *
-     * @param  PHP_CodeSniffer_File $phpcsFile The file where the token was found.
-     * @param  int                  $stackPtr  The position in the stack where
-     *                                         the token was found.
+     * @param  File $phpcsFile The file where the token was found.
+     * @param  int  $stackPtr  The position in the stack where
+     *                         the token was found.
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $matches = array();
         $tokens  = $phpcsFile->getTokens();

@@ -1,34 +1,10 @@
 <?php
-/**
- * Squiz_Sniffs_Formatting_FunctionSpacingSniff.
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   CVS: $Id: FunctionSpacingSniff.php 253905 2008-02-28 06:06:00Z squiz $
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
+namespace PHP_CodeSniffer\Sniffs;
 
-/**
- * Squiz_Sniffs_WhiteSpace_FunctionSpacingSniff.
- *
- * Checks the separation between methods in a class or interface.
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   Release: 1.2.2
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
-class LoVullo_Sniffs_Whitespace_FunctionSpacingSniff implements PHP_CodeSniffer_Sniff
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class LoVullo_Sniffs_Whitespace_FunctionSpacingSniff implements Sniff
 {
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -44,13 +20,13 @@ class LoVullo_Sniffs_Whitespace_FunctionSpacingSniff implements PHP_CodeSniffer_
     /**
      * Processes this sniff, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param File $phpcsFile The file being scanned.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -124,7 +100,7 @@ class LoVullo_Sniffs_Whitespace_FunctionSpacingSniff implements PHP_CodeSniffer_
             // there are 0 blank lines before the function.
             $foundLines = 0;
         } else {
-            $searchTokens = array_merge( PHP_CodeSniffer_Tokens::$commentTokens, array( T_WHITESPACE ) );
+            $searchTokens = array_merge( Tokens::$commentTokens, array( T_WHITESPACE ) );
             $prevContent  = $phpcsFile->findPrevious( $searchTokens, $prevLineToken, null, true);
 
             // Before we throw an error, check that we are not throwing an error

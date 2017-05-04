@@ -1,6 +1,11 @@
 <?php
 
-class LoVullo_Sniffs_Arrays_ArrayBracketSpacingSniff implements PHP_CodeSniffer_Sniff
+namespace PHP_CodeSniffer\Sniffs;
+
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
+
+class LoVullo_Sniffs_Arrays_ArrayBracketSpacingSniff implements Sniff
 {
     public function register()
     {
@@ -10,7 +15,7 @@ class LoVullo_Sniffs_Arrays_ArrayBracketSpacingSniff implements PHP_CodeSniffer_
                );
     }
 
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 
@@ -19,8 +24,8 @@ class LoVullo_Sniffs_Arrays_ArrayBracketSpacingSniff implements PHP_CodeSniffer_
             $prevType = $tokens[ ($stackPtr - 1) ]['code'];
 
             // Open brackets can never be preceded by a space
-            if (in_array($prevType, PHP_CodeSniffer_Tokens::$emptyTokens) === true) {
-                $nonSpace = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 2), null, true);
+            if (in_array($prevType, Tokens::$emptyTokens) === true) {
+                $nonSpace = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 2), null, true);
                 $expected = $tokens[ $nonSpace ]['content'].$tokens[ $stackPtr ]['content'];
                 $found    = $phpcsFile->getTokensAsString($nonSpace, ($stackPtr - $nonSpace)).$tokens[ $stackPtr ]['content'];
                 $error    = 'Space found before square bracket; expected "%s" but found "%s"';
