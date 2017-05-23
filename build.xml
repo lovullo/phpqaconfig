@@ -162,7 +162,7 @@
         unless="disable-phpcs"
         description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="${toolsdir}phpcs" failonerror="true">
-            <arg value="--standard=${qaconfig}LoVullo/phpcs.xml" />
+            <arg value="--standard=${phpcsstandard}" />
             <arg value="--extensions=php" />
             <arg value="--ignore=${phpcsignore}" />
             <arg value="-n" />
@@ -174,7 +174,7 @@
     <target name="phpcbf"
         description="Find coding standard violations using PHP_CodeSniffer and correct them with PHPCBF. Intended for usage on the command line before committing.">
         <exec executable="${toolsdir}phpcbf">
-            <arg value="--standard=${qaconfig}LoVullo/phpcs.xml" />
+            <arg value="--standard=${phpcsstandard}" />
             <arg value="--extensions=php" />
             <arg value="--ignore=${phpcsignore}" />
             <arg value="-n" />
@@ -189,7 +189,7 @@
         <exec executable="${toolsdir}phpcs" output="/dev/null">
             <arg value="--report=checkstyle" />
             <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
-            <arg value="--standard=${qaconfig}LoVullo/phpcs.xml" />
+            <arg value="--standard=${phpcsstandard}" />
             <arg value="--extensions=php" />
             <arg value="--ignore=${phpcsignore}" />
             <arg value="-n" />
