@@ -114,7 +114,7 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationSniff implements Sniff
 
                 if ($expectedIndent !== $foundIndent) {
                     $error = "Multi-line function declaration not indented correctly; expected $expectedIndent spaces but found $foundIndent";
-                    $phpcsFile->addError($error, $i);
+                    $phpcsFile->addError($error, $i, 'MultiLineFuncIndent');
                 }
 
                 $lastLine = $tokens[$i]['line'];
@@ -141,7 +141,7 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationSniff implements Sniff
                     $error .= "$length spaces";
                 }
 
-                $phpcsFile->addError($error, ($closeBracket + 1));
+                $phpcsFile->addError($error, ($closeBracket + 1), 'MultiLineFuncSpace');
 
                 return;
             }
@@ -156,7 +156,7 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationSniff implements Sniff
 
             if ($next !== false && $tokens[$next]['code'] !== T_OPEN_CURLY_BRACKET) {
                 $error = 'There must be a single space between the closing parenthesis and the opening brace of a multi-line function declaration';
-                $phpcsFile->addError($error, $next);
+                $phpcsFile->addError($error, $next, 'MultiLineFuncSpace');
             }
         }//end if
 
@@ -171,7 +171,7 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationSniff implements Sniff
 
         if ($tokens[$prev]['line'] === $tokens[$closeBracket]['line']) {
             $error = 'The closing parenthesis of a multi-line function declaration must be on a new line';
-            $phpcsFile->addError($error, $closeBracket);
+            $phpcsFile->addError($error, $closeBracket, 'MultiLineFuncParen');
         }
     }//end processMultiLineDeclaration()
 }//end class

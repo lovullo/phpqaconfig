@@ -76,7 +76,7 @@ class LoVullo_Sniffs_Whitespace_FunctionSpacingSniff implements Sniff
 
             // "2 lines after function" rule doesn't apply to global functions
             if ($foundLines !== 2 && $level > 0) {
-                $phpcsFile->addError("Expected 2 blank lines after function; $foundLines found", $closer);
+                $phpcsFile->addError("Expected 2 blank lines after function; $foundLines found", $closer, 'LinesBetweenFunctions');
             }
         }
 
@@ -143,7 +143,7 @@ class LoVullo_Sniffs_Whitespace_FunctionSpacingSniff implements Sniff
             // Don't throw the error if the previous token was a opening curly brace; This brace should
             // be the opening brace of a class and two padding spaces is unneeded
             if ($tokens[$prevContent]['content'] !== '{') {
-                $phpcsFile->addError("Expected 2 blank lines before function; $foundLines found", $stackPtr);
+                $phpcsFile->addError("Expected 2 blank lines before function; $foundLines found", $stackPtr, 'LinesBetweenFunctions');
             }
         }
     }//end process()

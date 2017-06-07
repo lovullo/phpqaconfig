@@ -43,6 +43,6 @@ class LoVullo_Sniffs_PHP_DisallowSuperGlobalsSniff implements Sniff
         }
 
         $error = "The $varName super global must not be accessed directly.";
-        $phpcsFile->addError($error, $stackPtr);
+        $phpcsFile->addError($error, $stackPtr, 'NoSuperGlobals');
     }
 }

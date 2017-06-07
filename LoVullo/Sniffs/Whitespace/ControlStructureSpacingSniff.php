@@ -70,7 +70,7 @@ class LoVullo_Sniffs_Whitespace_ControlStructureSpacingSniff implements Sniff
 
         if ($tokens[$trailingContent]['line'] === ($tokens[$scopeCloser]['line'] + 1)) {
             $error = 'No blank line found after control structure';
-            $phpcsFile->addError($error, $scopeCloser);
+            $phpcsFile->addError($error, $scopeCloser, 'NeedBlankLineAfterControlStruct');
         }
     }//end process()
 }//end class

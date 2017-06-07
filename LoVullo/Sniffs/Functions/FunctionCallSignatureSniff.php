@@ -109,13 +109,13 @@ class LoVullo_Sniffs_Functions_FunctionCallSignatureSniff implements Sniff
         if ($tokens[($openBracket + 1)]['code'] !== T_WHITESPACE) {
             // Checking this: $value = my_function([*]...).
             $error = 'Space needed after opening parenthesis of function call';
-            $phpcsFile->addError($error, $stackPtr);
+            $phpcsFile->addError($error, $stackPtr, 'SpaceAfterOpenParethesis');
         }
 
         if ($tokens[($closeBracket - 1)]['code'] !== T_WHITESPACE) {
             // Checking this: $value = my_function(...[*]).
             $error = 'Space needed before closing parenthesis of function call';
-            $phpcsFile->addError($error, $closeBracket);
+            $phpcsFile->addError($error, $closeBracket, 'SpaceBeforeCloseParenthesis');
         }
     }
 
@@ -247,28 +247,28 @@ class LoVullo_Sniffs_Functions_FunctionCallSignatureSniff implements Sniff
 
             // If next token is not whitespace, throw the error
             if ($ws_token['code'] != T_WHITESPACE) {
-                $phpcsFile->addError($error, $stackPtr);
+                $phpcsFile->addError($error, $stackPtr, 'MultiLineFuncParenthesis');
 
                 return;
             }
 
             // If next-next token isn't a string, throw the error
             if ($string_token['code'] != T_CONSTANT_ENCAPSED_STRING) {
-                $phpcsFile->addError($error, $stackPtr);
+                $phpcsFile->addError($error, $stackPtr, 'MultiLineFuncParenthesis');
 
                 return;
             }
 
             // If whitepsace token isn't on the same line, throw the error
             if ($open_paren['line'] != $ws_token['line']) {
-                $phpcsFile->addError($error, $stackPtr);
+                $phpcsFile->addError($error, $stackPtr, 'MultiLineFuncParenthesis');
 
                 return;
             }
 
             // If the string token isn't on the same line as the parenthesis, throw the error
             if ($open_paren['line'] != $string_token['line']) {
-                $phpcsFile->addError($error, $stackPtr);
+                $phpcsFile->addError($error, $stackPtr, 'MultiLineFuncParenthesis');
 
                 return;
             }
@@ -278,7 +278,7 @@ class LoVullo_Sniffs_Functions_FunctionCallSignatureSniff implements Sniff
 
             // If the string content doesn't start with a newline, throw the error
             if ($first_char != 13 && $first_char != 10) {
-                $phpcsFile->addError($error, $stackPtr);
+                $phpcsFile->addError($error, $stackPtr, 'MultiLineFuncParenthesis');
 
                 return;
             }
@@ -291,7 +291,7 @@ class LoVullo_Sniffs_Functions_FunctionCallSignatureSniff implements Sniff
 
             if ($ws_token['code'] != T_WHITESPACE || $string_token['code'] != T_CONSTANT_ENCAPSED_STRING) {
                 $error = 'Closing parenthesis of a multi-line function call must be on a line by itself';
-                $phpcsFile->addError($error, $closeBracket);
+                $phpcsFile->addError($error, $closeBracket, 'MultiLineFuncParenthesis');
             }
         }
     }//end processMultiLineCall()

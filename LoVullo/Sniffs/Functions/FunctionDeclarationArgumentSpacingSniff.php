@@ -52,11 +52,11 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationArgumentSpacingSniff implement
 
                     if ($gap != 1) {
                         $error = "Expected 1 space between default value and equals sign for argument \"$arg\"; $gap found";
-                        $phpcsFile->addError($error, $nextToken);
+                        $phpcsFile->addError($error, $nextToken, 'FunctionArgSpacing');
                     }
                 } else {
                     $error = "Expected 1 space between default value and equals sign for argument";
-                    $phpcsFile->addError($error, $nextToken);
+                    $phpcsFile->addError($error, $nextToken, 'FunctionArgSpacing');
                 }
             }
 
@@ -68,7 +68,7 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationArgumentSpacingSniff implement
                     $space = strlen($tokens[($nextComma - 1)]['content']);
                     $arg   = $tokens[$nextParam]['content'];
                     $error = "Expected 0 spaces between argument \"$arg\" and comma; $space found";
-                    $phpcsFile->addError($error, $nextToken);
+                    $phpcsFile->addError($error, $nextToken, 'FunctionArgSpacing');
                 }
             }
 
@@ -101,28 +101,28 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationArgumentSpacingSniff implement
 
                         if ($gap !== 1 && $multiLine === false) {
                             $error = "Expected 1 space between type hint and argument \"$arg\"; $gap found";
-                            $phpcsFile->addError($error, $nextToken);
+                            $phpcsFile->addError($error, $nextToken, 'FunctionTypeHintSpacing');
                         }
 
                         if ($multiLine === false) {
                             if ($tokens[($comma + 1)]['code'] !== T_WHITESPACE) {
                                 $error = "Expected 1 space between comma and type hint \"$hint\"; 0 found";
-                                $phpcsFile->addError($error, $nextToken);
+                                $phpcsFile->addError($error, $nextToken, 'FunctionTypeHintSpacing');
                             } else {
                                 $gap = strlen($tokens[($comma + 1)]['content']);
                                 if ($gap !== 1) {
                                     $error = "Expected 1 space between comma and type hint \"$hint\"; $gap found";
-                                    $phpcsFile->addError($error, $nextToken);
+                                    $phpcsFile->addError($error, $nextToken, 'FunctionTypeHintSpacing');
                                 }
                             }
                         }
                     } elseif ($multiLine === false && $gap !== 1) {
                         $error = "Expected 1 space between comma and argument \"$arg\"; $gap found";
-                        $phpcsFile->addError($error, $nextToken);
+                        $phpcsFile->addError($error, $nextToken, 'FunctionArgSpacing');
                     }//end if
                 } else {
                     $error = "Expected 1 space between comma and argument \"$arg\"; 0 found";
-                    $phpcsFile->addError($error, $nextToken);
+                    $phpcsFile->addError($error, $nextToken, 'FunctionArgSpacing');
                 }//end if
             } else {
                 // First argument in function declaration.
@@ -144,7 +144,7 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationArgumentSpacingSniff implement
 
                         if ($gap !== 1 && $multiLine === false) {
                             $error = "Expected 1 space between type hint and argument \"$arg\"; $gap found";
-                            $phpcsFile->addError($error, $nextToken);
+                            $phpcsFile->addError($error, $nextToken, 'FunctionTypeHintSpacing');
                         }
 
                         if ($multiLine === false
@@ -154,13 +154,13 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationArgumentSpacingSniff implement
 
                             if ($gap != 1) {
                                 $error = "Expected 1 space between opening bracket and type hint \"$hint\"; $gap found";
-                                $phpcsFile->addError($error, $nextToken);
+                                $phpcsFile->addError($error, $nextToken, 'FunctionTypeHintSpacing');
                             }
                         }
                     } elseif ($multiLine === false) {
                         if ($gap != 1) {
                             $error = "Expected 1 space between opening bracket and argument \"$arg\"; $gap found";
-                            $phpcsFile->addError($error, $nextToken);
+                            $phpcsFile->addError($error, $nextToken, 'FunctionTypeHintSpacing');
                         }
                     }
                 }//end if
@@ -174,7 +174,7 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationArgumentSpacingSniff implement
             if (($closeBracket - $openBracket) !== 1) {
                 $space = strlen($tokens[($closeBracket - 1)]['content']);
                 $error = "Expected 0 spaces between brackets of function declaration; $space found";
-                $phpcsFile->addError($error, $stackPtr);
+                $phpcsFile->addError($error, $stackPtr, 'FunctionDeclarationSpacing');
             }
         } else {
             // There should be exactly one space after the opening parenthesis
@@ -182,7 +182,7 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationArgumentSpacingSniff implement
                 // If the open bracket doesn't have a space after it and it's not the last thing on the line, throw an error
                 if ($tokens[$openBracket + 1]['content'] != PHP_EOL) {
                     $error = "Expected 1 space between the opening parenthesis and first argument";
-                    $phpcsFile->addError($error, $openBracket);
+                    $phpcsFile->addError($error, $openBracket, 'FunctionDeclarationSpacing');
                 }
             }
 
@@ -199,7 +199,7 @@ class LoVullo_Sniffs_Functions_FunctionDeclarationArgumentSpacingSniff implement
                 // Don't throw an error if the closing parenthesis is the first thing on the line
                 if ($firstOnLine != $closeBracket) {
                     $error = "Expected 1 space between the last argument and the closing parenthesis";
-                    $phpcsFile->addError($error, $closeBracket);
+                    $phpcsFile->addError($error, $closeBracket, 'FunctionDeclarationSpacing');
                 }
             }
         }

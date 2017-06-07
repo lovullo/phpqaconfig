@@ -86,10 +86,10 @@ class LoVullo_Sniffs_Commenting_BlockCommentSniff implements Sniff
                 if (strpos($tokens[$stackPtr]['content'], '{{{') !== false ||
                     strpos($tokens[$stackPtr]['content'], '}}}') !== false) {
                     $error = 'No editor-specific turds allowed.';
-                    $phpcsFile->addError($error, $stackPtr);
+                    $phpcsFile->addError($error, $stackPtr, 'EditorSpecificIndicators');
                 } else {
                     $error = 'Single line block comment not allowed; use inline ("// text") comment instead';
-                    $phpcsFile->addError($error, $stackPtr);
+                    $phpcsFile->addError($error, $stackPtr, 'NoSingleLineBlockComment');
                 }
 
                 return;
@@ -99,7 +99,7 @@ class LoVullo_Sniffs_Commenting_BlockCommentSniff implements Sniff
                 if (trim($tokens[$commentLines[1]]['content']) === '*/') {
                     if (trim($tokens[$stackPtr]['content']) === '/*') {
                         $error = 'Empty block comment not allowed';
-                        $phpcsFile->addError($error, $stackPtr);
+                        $phpcsFile->addError($error, $stackPtr, 'NoEmptyBlockComments');
 
                         return;
                     }
@@ -110,7 +110,7 @@ class LoVullo_Sniffs_Commenting_BlockCommentSniff implements Sniff
         $content = trim($tokens[$stackPtr]['content']);
         if ($content !== '/*' && $content !== '/**' && $content !== '/**#@+' && $content !== '/**#@-*/') {
             $error = 'Block comment text must start on a new line';
-            $phpcsFile->addError($error, $stackPtr);
+            $phpcsFile->addError($error, $stackPtr, 'BlockQuoteOwnLine');
 
             return;
         }

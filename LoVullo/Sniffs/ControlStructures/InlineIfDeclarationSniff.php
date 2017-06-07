@@ -61,7 +61,7 @@ class LoVullo_Sniffs_ControlStructures_InlineIfDeclarationSniff implements Sniff
         $contentAfter  = $phpcsFile->findNext(array(T_WHITESPACE), ($stackPtr + 1), null, true);
         if ($tokens[$contentBefore]['code'] !== T_CLOSE_PARENTHESIS) {
             $error = 'Inline shorthand IF statement requires brackets around comparison';
-            $phpcsFile->addError($error, $stackPtr);
+            $phpcsFile->addError($error, $stackPtr, 'BracketsShorthandIf');
 
             return;
         }
@@ -78,7 +78,7 @@ class LoVullo_Sniffs_ControlStructures_InlineIfDeclarationSniff implements Sniff
         $spaceAfter = (($tokens[$contentAfter]['column']) - ($tokens[$stackPtr]['column'] + 1));
         if ($spaceAfter !== 1 && $tokens[$stackPtr + 1]['content'] != ':') {
             $error = "Inline shorthand IF statement requires 1 space after THEN; $spaceAfter found.";
-            $phpcsFile->addError($error, $stackPtr);
+            $phpcsFile->addError($error, $stackPtr, 'SpacingShorthandIf');
         }
 
         // If there is an else in this condition, make sure it has correct spacing.
@@ -103,7 +103,7 @@ class LoVullo_Sniffs_ControlStructures_InlineIfDeclarationSniff implements Sniff
         $spaceAfter = (($tokens[$contentAfter]['column']) - ($tokens[$inlineElse]['column'] + 1));
         if ($spaceAfter !== 1) {
             $error = "Inline shorthand IF statement requires 1 space after ELSE; $spaceAfter found.";
-            $phpcsFile->addError($error, $inlineElse);
+            $phpcsFile->addError($error, $inlineElse, 'SpacingShorthandIf');
         }
     }//end process()
 }//end class

@@ -31,7 +31,7 @@ class LoVullo_Sniffs_Whitespace_DisallowMultipleBlankLinesSniff implements Sniff
         if (strpos($tokens[$stackPtr]['content'], "\n") != strrpos($tokens[$stackPtr]['content'], "\n")) {
             $error = 'Only use 1 blank line between objects';
 
-            $phpcsFile->addError($error, $stackPtr);
+            $phpcsFile->addError($error, $stackPtr, 'NoMultipleBlankLines');
         }
     }
 }
