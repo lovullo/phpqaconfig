@@ -58,7 +58,7 @@ class LoVullo_Sniffs_Whitespace_MemberVarSpacingSniff extends AbstractVariableSn
         }
 
         if ($foundLines !== 1) {
-            $phpcsFile->addError("Expected 1 blank line before member var; $foundLines found", $stackPtr);
+            $phpcsFile->addError("Expected 1 blank line before member var; $foundLines found", $stackPtr, 'MissingLineBeforeMemVar');
         }
     }//end processMemberVar()
 

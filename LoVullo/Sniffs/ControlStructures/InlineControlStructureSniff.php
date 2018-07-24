@@ -96,9 +96,9 @@ class LoVullo_Sniffs_ControlStructures_InlineControlStructureSniff implements Sn
             // This is a control structure without an opening brace,
             // so it is an inline statement.
             if ($this->error === true) {
-                $phpcsFile->addError('Inline control structures are not allowed', $stackPtr);
+                $phpcsFile->addError('Inline control structures are not allowed', $stackPtr, 'InlineControlStruc');
             } else {
-                $phpcsFile->addWarning('Inline control structures are discouraged', $stackPtr);
+                $phpcsFile->addWarning('Inline control structures are discouraged', $stackPtr, 'InlineControlStruc');
             }
 
             return;
