@@ -14,7 +14,6 @@ class LoVullo_Sniffs_ControlStructures_ControlSignatureSniff extends AbstractPat
      */
     public $supportedTokenizers = array('PHP', 'JS');
 
-
     /**
      * Returns the patterns that this test wishes to verify.
      *
@@ -23,13 +22,13 @@ class LoVullo_Sniffs_ControlStructures_ControlSignatureSniff extends AbstractPat
     protected function getPatterns()
     {
         return array(
-                'try EOL{EOL...EOL}EOLcatch (...)EOL{EOL',
-                'doEOL{EOL...EOL} while (...);EOL',
-                'while (...)EOL{EOL',
-                'for (...)EOL{EOL',
-                'if (...)EOL{EOL',
-                'foreach (...)EOL{EOL',
-                '}EOLelseif (...)EOL{EOL',
+                'try EOL{EOL...EOL}EOLcatch ( ... )EOL{EOL',
+                'doEOL{EOL...EOL} while ( ... );EOL',
+                'while ( ... )EOL{EOL',
+                'for ( ... )EOL{EOL',
+                'if ( ... )EOL{EOL',
+                'foreach ( ... )EOL{EOL',
+                '}EOLelseif ( ... )EOL{EOL',
                );
     }
 }
