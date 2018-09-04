@@ -224,6 +224,55 @@ a `phpcpdignore` property:
 
 By default, only the `vendor` directory is excluded from checks.
 
+phpDox Configuration
+----------
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://xml.phpdox.net/config" silent="true">
+    <bootstrap />
+
+    <project name="phpdox" source="${basedir}/src" workdir="${basedir}/build/phpdox/xml">
+        <collector publiconly="false" backend="parser">
+            <include mask="*.php" />
+            <inheritance resolve="true" />
+        </collector>
+
+        <generator output="${basedir}/build/docs">
+            <enrich base="${basedir}/build">
+                <source type="build" />
+
+                <source type="phploc">
+                    <file name="logs/phploc.xml" />
+                </source>
+
+                <source type="git">
+                    <git binary="git" />
+                    <history enabled="true" limit="15" cache="${phpDox.project.workdir}/gitlog.xml" />
+                </source>
+
+                <source type="checkstyle">
+                    <file name="logs/checkstyle.xml" />
+                </source>
+
+                <source type="phpunit">
+                    <file name="logs/phpunit" />
+                </source>
+
+                <source type="pmd">
+                    <file name="logs/pmd.xml" />
+                </source>
+            </enrich>
+
+            <build engine="html" enabled="true" output="html">
+                <template dir="${phpDox.home}/templates/html" />
+                <file extension="html" />
+            </build>
+        </generator>
+    </project>
+</phpdox>
+```
+
 Disabling QA Checks
 ----------
 
