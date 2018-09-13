@@ -120,6 +120,21 @@
         </exec>
     </target>
 
+    <target name="phpunit-ci"
+        depends="prepare"
+        unless="disable-phpunit"
+        description="Run unit tests with PHPUnit">
+        <exec executable="/usr/local/bin/phpdbg" failonerror="true">
+            <arg value="-qrr" />
+            <arg value="${toolsdir}phpunit" />
+            <arg value="--exclude-group" />
+            <arg value="ciexclude,selenium" />
+            <arg value="-c" />
+            <arg value="${phpunitconfig}" />
+        </exec>
+    </target>
+
+
     <target name="pdepend"
         depends="prepare"
         unless="disable-pdepend"
