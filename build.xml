@@ -129,6 +129,8 @@
             <arg value="${toolsdir}phpunit" />
             <arg value="--exclude-group" />
             <arg value="ciexclude,selenium" />
+            <arg value="--coverage-text" />
+            <arg value="--color=never" />
             <arg value="-c" />
             <arg value="${phpunitconfig}" />
         </exec>
