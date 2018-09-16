@@ -131,6 +131,8 @@
             <arg value="ciexclude,selenium" />
             <arg value="--coverage-text" />
             <arg value="--color=never" />
+            <arg value="--coverage-html" />
+            <arg value="${basedir}/build/coverage" />
             <arg value="-c" />
             <arg value="${phpunitconfig}" />
         </exec>
