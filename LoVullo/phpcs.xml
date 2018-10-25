@@ -114,6 +114,10 @@
         <exclude name="Squiz.WhiteSpace.OperatorSpacing.SpacingAfter" />
         <exclude name="Squiz.WhiteSpace.OperatorSpacing.SpacingBefore" />
         <exclude name="Squiz.WhiteSpace.ScopeClosingBrace" />
+
+        <!-- v3.3.2 caused issues because it added non-Squiz rules to this standard -->
+        <exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
+        <exclude name="PSR2.Classes.PropertyDeclaration.Underscore" />
     </rule>
 
     <rule ref="Zend">
