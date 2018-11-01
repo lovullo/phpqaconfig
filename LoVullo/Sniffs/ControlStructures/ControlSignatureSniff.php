@@ -194,7 +194,8 @@ class LoVullo_Sniffs_ControlStructures_ControlSignatureSniff implements Sniff
 
             $lineDifference = ($braceLine - $prevContentLine);
 
-            if ($lineDifference !== 1) {
+            // There must be at least one line difference between the previous content and the closing brace
+            if ($lineDifference < 1) {
                 $data  = array($tokens[$closerPtr]['content']);
                 $error = 'Closing brace "%s" should be on a new line';
                 $fix   = $phpcsFile->addFixableError($error, $closerPtr, 'ClosingBraceOnNewLine', $data);
