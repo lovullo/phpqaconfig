@@ -3,6 +3,7 @@
     "description": "PHP QA and development tool configuration for LoVullo Associates.",
     "license": "GPL-3.0+",
     "keywords": [ "php", "qa", "tools", "configuration" ],
+    "abandoned": true,
     "require": {
         "friendsofphp/php-cs-fixer":   "@stable",
         "phpmd/phpmd":                 "@stable",
