@@ -11,7 +11,7 @@ Installation
 Simply require it in your project's `composer.json`
 
 ```json
-    "require": {
+    "require-dev": {
         "lovullo/phpqaconfig": "@stable"
     }
 ```
@@ -19,7 +19,7 @@ Simply require it in your project's `composer.json`
 Or
 
 ```sh
-$ composer require lovullo/phpqaconfig
+$ composer require --dev lovullo/phpqaconfig
 ```
 
 Usage

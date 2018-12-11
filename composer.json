@@ -4,7 +4,7 @@
     "license": "GPL-3.0+",
     "keywords": [ "php", "qa", "tools", "configuration" ],
     "abandoned": true,
-    "require": {
+    "require-dev": {
         "friendsofphp/php-cs-fixer":   "@stable",
         "phpmd/phpmd":                 "@stable",
         "phpunit/dbunit":              "@stable",
