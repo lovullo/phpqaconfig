@@ -49,6 +49,7 @@
     <rule ref="MySource">
         <exclude name="MySource.Channels.IncludeSystem" />
         <exclude name="MySource.Commenting.FunctionComment" />
+        <exclude name="MySource.PHP.AjaxNullComparison" />
         <exclude name="MySource.PHP.GetRequestData" />
         <exclude name="MySource.PHP.ReturnFunctionValue" />
     </rule>
