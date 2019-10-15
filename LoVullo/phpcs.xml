@@ -37,6 +37,7 @@
         <exclude name="Generic.PHP.ClosingPHPTag.NotFound" />
         <exclude name="Generic.PHP.ForbiddenFunctions" />
         <exclude name="Generic.PHP.UpperCaseConstant" />
+        <exclude name="Generic.PHP.RequireStrictTypes.MissingDeclaration" />
         <exclude name="Generic.Strings.UnnecessaryStringConcat" />
         <exclude name="Generic.VersionControl.SubversionProperties" />
         <exclude name="Generic.WhiteSpace.ArbitraryParenthesesSpacing.SpaceAfterOpen" />
