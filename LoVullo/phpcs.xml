@@ -23,6 +23,7 @@
         <exclude name="Generic.Commenting.Fixme.TaskFound" />
         <exclude name="Generic.Commenting.Todo" />
         <exclude name="Generic.ControlStructures.InlineControlStructure" />
+        <exclude name="Generic.ControlStructures.DisallowYodaConditions.Found" />
         <exclude name="Generic.Files.EndFileNewline.NotFound" />
         <exclude name="Generic.Files.EndFileNoNewline.Found" />
         <exclude name="Generic.Files.LineLength" />
