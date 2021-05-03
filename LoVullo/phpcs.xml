@@ -33,7 +33,9 @@
         <exclude name="Generic.Formatting.SpaceAfterNot.Incorrect" />
         <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
         <exclude name="Generic.Metrics.CyclomaticComplexity" />
+        <exclude name="Generic.NamingConventions.AbstractClassNamePrefix.Missing" />
         <exclude name="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps" />
+        <exclude name="Generic.NamingConventions.InterfaceNameSuffix.Missing" />
         <exclude name="Generic.PHP.CharacterBeforePHPOpeningTag.Found" />
         <exclude name="Generic.PHP.ClosingPHPTag.NotFound" />
         <exclude name="Generic.PHP.ForbiddenFunctions" />
